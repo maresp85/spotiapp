@@ -18,17 +18,23 @@ export class HomeComponent implements OnInit {
 
     this.loading = true;
 
-    this.spotify.getProfile("maresp85")
+    this.spotify.token()
+                .subscribe((data: any) => {
+        console.log(data);
+    }, error => {
+      console.log(error);
+    });
+
+   /* this.spotify.getProfile("maresp85")
                 .subscribe( (data: any) => {    
                   this.profile = data;
                   this.spotify.getPlaylists("maresp85")
-                              .subscribe( (data: any) => {
-                                console.log(data)
+                              .subscribe( (data: any) => {                        
                                 this.playlists = data;
                                 this.loading = false;
 
                   })
-    });
+    });*/
 
   }
 
