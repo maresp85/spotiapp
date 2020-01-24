@@ -1,0 +1,16 @@
+<app-loading class="m-5" *ngIf="loading"></app-loading>
+
+<div class="row" *ngIf="!loading">
+    <div class="col s12 m12">
+      <div class="card blue-grey darken-1">
+        <div class="card-content white-text">
+          <span class="card-title">{{ profile.display_name }}</span>
+          <p>{{ profile.external_urls.spotify }}</p>
+        </div>
+        <div class="card-action">
+          <span>Followers: {{ profile.followers.total }}</span>   
+        </div> 
+      </div>
+    </div>
+  </div>
+            
