@@ -25,7 +25,7 @@
           <p>Tracks: {{ playlist.tracks.total }}</p>
         </div>
         <div class="card-action">
-          <a href="#">This is a link</a>
+          <a [routerLink]="['../playlist', playlist.id]">Tracks</a>
         </div>
       </div>
     </div>

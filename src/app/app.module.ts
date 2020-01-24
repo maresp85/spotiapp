@@ -3,22 +3,26 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from "@angular/router";
 import { HttpClientModule } from "@angular/common/http";
 
-import { AppComponent } from './app.component';
-import { NavbarComponent } from './components/shared/navbar/navbar.component';
-import { HomeComponent } from './components/home/home.component';
-
 //Routes
 import { ROUTES } from "./app.routes";
 //services
 import { SpotifyService } from './services/spotify.service';
+
+import { AppComponent } from './app.component';
+import { NavbarComponent } from './components/shared/navbar/navbar.component';
+import { HomeComponent } from './components/home/home.component';
 import { LoadingComponent } from './components/shared/loading/loading.component';
+import { PlaylistComponent } from './components/playlist/playlist.component';
+import { TrackComponent } from './components/track/track.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     HomeComponent,
-    LoadingComponent
+    LoadingComponent,
+    PlaylistComponent,
+    TrackComponent
   ],
   imports: [
     BrowserModule,
