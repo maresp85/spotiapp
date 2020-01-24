@@ -23,6 +23,7 @@ export class HomeComponent implements OnInit {
                   this.profile = data;
                   this.spotify.getPlaylists("maresp85")
                               .subscribe( (data: any) => {
+                                console.log(data)
                                 this.playlists = data;
                                 this.loading = false;
 
