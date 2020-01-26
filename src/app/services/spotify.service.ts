@@ -13,12 +13,20 @@ export class SpotifyService {
   getQuery( query:string ){
     const url = `https://api.spotify.com/v1/${ query }`;
 
+    let access_token = localStorage.getItem('access_token')
+
     const headers = new HttpHeaders({
-      'Authorization': 'Bearer BQDlFJ523fDfjdo3xhuYl-jFhYPtqcK1W51UdAmbUh9gMkgKMTGovAe5uveidRsPCorhtLIGWBdsmP8Ojvs'
+      'Authorization': `Bearer ${access_token}` 
     });
-
-    return this.http.get(url, { headers });
-
+    
+    return new Promise((resolve,reject)=>{    
+      this.http.get(url, { headers }).subscribe((data:any) =>{
+        resolve({data : data}); 
+      }, error => {
+        reject({error: error})
+      });
+      
+    });
   }
 
    //GetProfile
