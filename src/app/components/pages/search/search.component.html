@@ -1,0 +1,44 @@
+<div class="row">
+    <div class="col-md-3">
+
+        <input [(ngModel)]="word"
+                (keyup)="searchArtist()"
+                type="text" 
+                name="word"
+                class="form-control"
+                placeholder="Search by Artist...">
+       
+    
+    </div>
+</div>
+
+<div class="container" *ngIf="search">
+    <div class="row">
+        <div class="col m12">
+            <table class="striped">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Album</th>
+                        <th>Artist</th>
+                        <th>Image</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let track of tracks.items">
+                        <td>{{ track.name }}</td>
+                        <td>{{ track.album.name }}</td>
+                        <td>
+                            <span *ngFor="let a of track.artists">
+                                {{ a.name }}
+                            </span>                           
+                        </td>
+                        <td>
+                            <img src="{{ track.album.images[1].url }}" width="40" height="40">
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>       
+    </div>
+  </div>

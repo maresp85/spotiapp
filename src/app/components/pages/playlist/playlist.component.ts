@@ -24,12 +24,14 @@ export class PlaylistComponent implements OnInit {
     }); 
 
     this.loading = true;
-
     this.spotify.getTracks(this.playlist_id)
-                .subscribe( (data: any) => {  
+                .then( (data: any) => {  
                   console.log(data);  
                   this.playlists = data;
                   this.loading = false;               
+    }).catch((error: any)=>{
+      this.loading = false;
+      console.log("ERORORORO", error)
     });
   }
 

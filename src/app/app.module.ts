@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { RouterModule } from "@angular/router";
 import { HttpClientModule } from "@angular/common/http";
 import { ReactiveFormsModule } from '@angular/forms';
@@ -15,6 +16,7 @@ import { HomeComponent } from './components/pages/home/home.component';
 import { LoadingComponent } from './components/shared/loading/loading.component';
 import { PlaylistComponent } from './components/pages/playlist/playlist.component';
 import { TrackComponent } from './components/pages/track/track.component';
+import { SearchComponent } from './components/pages/search/search.component';
 
 @NgModule({
   declarations: [
@@ -23,12 +25,14 @@ import { TrackComponent } from './components/pages/track/track.component';
     HomeComponent,
     LoadingComponent,
     PlaylistComponent,
-    TrackComponent
+    TrackComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     HttpClientModule,
-    ReactiveFormsModule,
+    ReactiveFormsModule,    
     RouterModule.forRoot( ROUTES, { useHash: true } )
   ],
   providers: [ SpotifyService ],

@@ -44,6 +44,11 @@ export class SpotifyService {
     return this.getQuery(`playlists/${ playlist_id }`);
   }
 
+   //GetProfile
+  searchArtist(word: any) {
+    return this.getQuery(`search/?q=${ word }&type=track`);
+  }
+
    //Obtener Token
   token() {
     const body = new HttpParams()
