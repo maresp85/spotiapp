@@ -1,45 +1,52 @@
-<app-loading class="m-5" *ngIf="loading"></app-loading>
+<app-loading *ngIf="loading"></app-loading>
 
-<div class="row" *ngIf="!loading&&login">
-  <div class="col s12 m12">
-      <div class="card green accent-4">
-          <div class="card-content black-text">            
-            <form [formGroup]="myForm" (ngSubmit)="onSubmit(myForm)"> 
-                <input type="text" formControlName="name" placeholder="Spotify user">           
-              <button class="waves-effect waves-light btn grey darken-3" type="submit">Send</button>
-            </form>
-          </div>
-      </div>
-  </div>
-</div>
+<div *ngIf="!loading">
 
-<div class="row" *ngIf="!loading&&!login">
+  <div class="row" *ngIf="this.userservice.getUsuario() == ''">
     <div class="col s12 m12">
         <div class="card green accent-4">
-            <div class="card-content black-text">
-                <span class="card-title">
-                  <h4>{{ profile.display_name }}</h4>
-                </span>
-                <h5>{{ profile.external_urls.spotify }}</h5>
+            <div class="card-content black-text">            
+              <form [formGroup]="myForm" (ngSubmit)="onSubmit(myForm)"> 
+                  <input type="text" formControlName="name" placeholder="Spotify user">           
+                <button class="waves-effect waves-light btn grey darken-3" type="submit">Send</button>
+              </form>
             </div>
-            <div class="card-action">
-                <h6>Followers: {{ profile.followers.total }}</h6>   
-            </div> 
         </div>
     </div>
-</div>
-<div class="row" *ngIf="!loading&&!login">
-  <h5 class="white-text">Playlists</h5>
-  <hr>
-  <div class="col m3" *ngFor="let playlist of playlists.items">
-    <div class="card">
-      <div class="card-image">
-        <img src="{{ playlist.images[1].url }}">
-        <span class="card-title" style="width:100%; background: rgba(0, 0, 0, 0.5);">{{ playlist.name }}</span>
-      </div>      
-      <div class="card-action">
-        <button class=" waves-effect waves-light btn green accent-4" [routerLink]="['../playlist', playlist.id]">Tracks</button>
+  </div>
+  
+  <div class="row" *ngIf="this.userservice.getUsuario() != ''">
+      <div class="row">
+        <div class="col s12 m12">
+            <div class="card green accent-4">
+                <div class="card-content black-text">
+                    <span class="card-title">
+                      <h4>{{ profile.display_name }}</h4>
+                    </span>
+                    <h5>{{ profile.external_urls.spotify }}</h5>
+                </div>
+                <div class="card-action">
+                    <h6>Followers: {{ profile.followers.total }}</h6>   
+                </div> 
+            </div>
+        </div>
+    </div>
+    <div class="row">
+      <h5 class="white-text">Playlists</h5>
+      <hr>
+      <div class="col m3" *ngFor="let playlist of playlists.items">
+        <div class="card">
+          <div class="card-image">
+            <img src="{{ playlist.images[1].url }}">
+            <span class="card-title" style="width:100%; background: rgba(0, 0, 0, 0.5);">{{ playlist.name }}</span>
+          </div>      
+          <div class="card-action">
+            <button class=" waves-effect waves-light btn green accent-4" [routerLink]="['../playlist', playlist.id]">Tracks</button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
+  
+
 </div>

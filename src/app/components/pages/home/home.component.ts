@@ -1,6 +1,8 @@
 import { Component, OnInit, ComponentFactoryResolver } from '@angular/core';
 import { SpotifyService } from 'src/app/services/spotify.service';
 import { FormControl, FormGroup } from '@angular/forms';
+import { UserService } from 'src/app/services/user.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-home',
@@ -8,17 +10,15 @@ import { FormControl, FormGroup } from '@angular/forms';
   styleUrls: ['./home.component.sass']
 })
 export class HomeComponent implements OnInit {
-
-  login: boolean;
+  
   loading: boolean;
   profile: any[] = [];
   playlists: any[] = [];
   myForm: FormGroup;
 
-  constructor(private spotify: SpotifyService) { 
-   
+  constructor(private spotify: SpotifyService,
+              private userservice: UserService) {    
   }
-
   
   ngOnInit() {
     this.myForm = new FormGroup({
@@ -30,11 +30,9 @@ export class HomeComponent implements OnInit {
 
      /* if there exists user in datastore, get profile
      if not, show the login form */
-    if (this.getUsuario() != '') {
-      this.getProfile(this.getUsuario());
-    } else {      
-      this.login = true;
-    }   
+    if (this.userservice.getUsuario() != '') {
+      this.getProfile(this.userservice.getUsuario());
+    }  
   }
 
    //get Profile via Spotify API
@@ -43,18 +41,22 @@ export class HomeComponent implements OnInit {
     this.spotify.getProfile(usuario)  
                 .then((data: any) => {
                   this.profile = data.data;
-                  this.setUsuario(usuario);
+                  this.userservice.setUsuario(usuario);
                   this.spotify.getPlaylists(usuario)
                               .then((data: any) => {
-                    this.playlists = data.data;
-                    this.login = false;                  
+                    this.playlists = data.data;                                 
                     this.loading = false;
                   }).catch((error:any)=>{
                     this.loading = false;
                   })
                 }).catch((error: any)=>{
                   this.loading = false;
-                  console.log("ERORORORO", error) //se lleva al Login
+                  Swal.fire({    
+                    text: 'User not found',
+                    icon: 'error',
+                    confirmButtonText: 'OK',
+                    allowOutsideClick: false
+                  });        
                 });
   }
 
@@ -66,19 +68,7 @@ export class HomeComponent implements OnInit {
       console.log(error);
     });
   }
-  
-  setUsuario( usuario: any ) {
-    localStorage.setItem("usuario", usuario);
-  }
-
-  getUsuario() {
-    if ( localStorage.getItem('usuario') ) {
-      return localStorage.getItem('usuario');
-    } else {
-      return '';
-    }
-  }
-   
+       
   onSubmit(form: FormGroup) {
     this.getProfile(form.value.name);
   }

@@ -9,6 +9,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ROUTES } from "./app.routes";
 //services
 import { SpotifyService } from './services/spotify.service';
+import { UserService } from './services/user.service';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/shared/navbar/navbar.component';
@@ -35,7 +36,7 @@ import { SearchComponent } from './components/pages/search/search.component';
     ReactiveFormsModule,    
     RouterModule.forRoot( ROUTES, { useHash: true } )
   ],
-  providers: [ SpotifyService ],
+  providers: [SpotifyService,UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

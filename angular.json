@@ -28,12 +28,10 @@
               "src/assets"
             ],
             "styles": [
-              "./node_modules/materialize-css/sass/materialize.scss",
               "src/styles.sass"
             ],
-            "scripts": [
-              "./node_modules/jquery/dist/jquery.min.js",
-              "./node_modules/materialize-css/dist/js/materialize.min.js"
+            "scripts": [              
+              "../node_modules/jquery/dist/jquery.min.js"
             ]
           },
           "configurations": {

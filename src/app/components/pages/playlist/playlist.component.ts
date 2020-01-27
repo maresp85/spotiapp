@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { SpotifyService } from 'src/app/services/spotify.service';
 import { Router, ActivatedRoute } from '@angular/router';
+// This lets me use jquery
+declare var $: any;
 
 @Component({
   selector: 'app-playlist',
@@ -15,10 +17,16 @@ export class PlaylistComponent implements OnInit {
   playlists: any[] = [];
   loading: boolean;
 
+  
+
   constructor(private spotify: SpotifyService,
               private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
+    $(document).ready(function(){
+      $('.modal').modal();
+    });    
+    
     this.activatedRoute.params.subscribe( params => {
       this.playlist_id = params['id']; 
     }); 
@@ -27,7 +35,7 @@ export class PlaylistComponent implements OnInit {
     this.spotify.getTracks(this.playlist_id)
                 .then( (data: any) => {  
                   console.log(data);  
-                  this.playlists = data;
+                  this.playlists = data.data;
                   this.loading = false;               
     }).catch((error: any)=>{
       this.loading = false;
