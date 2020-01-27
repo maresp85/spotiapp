@@ -17,11 +17,10 @@ export class PlaylistComponent implements OnInit {
   playlists: any[] = [];
   loading: boolean;
 
-  
-
   constructor(private spotify: SpotifyService,
               private activatedRoute: ActivatedRoute) { }
 
+   //enable jquery modals
   ngOnInit() {
     $(document).ready(function(){
       $('.modal').modal();
@@ -39,10 +38,11 @@ export class PlaylistComponent implements OnInit {
                   this.loading = false;               
     }).catch((error: any)=>{
       this.loading = false;
-      console.log("ERORORORO", error)
+      console.log("Error", error)
     });
   }
 
+   //Reload info into the modal
   listen(track_name: any, preview_url: any) {
     this.track_name = track_name;
     this.preview_url = preview_url;

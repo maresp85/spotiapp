@@ -17,12 +17,12 @@ export class SearchComponent implements OnInit {
   ngOnInit() {
   }
 
+   //get Artists By Search Service APi Spotify
   searchArtist() {
     this.spotify.searchArtist(this.word)
                 .then((data: any) =>{
       this.tracks = data.data.tracks
       this.search = true;
-      console.log(this.tracks)
     }).catch(() => {
       console.log("error")
     });

@@ -41,6 +41,7 @@ export class HomeComponent implements OnInit {
     this.spotify.getProfile(usuario)  
                 .then((data: any) => {
                   this.profile = data.data;
+                  console.log(this.profile);
                   this.userservice.setUsuario(usuario);
                   this.spotify.getPlaylists(usuario)
                               .then((data: any) => {
