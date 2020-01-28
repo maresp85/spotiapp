@@ -25,9 +25,6 @@ export class HomeComponent implements OnInit {
       name: new FormControl('')
     });
 
-     // Get token
-    this.getToken();
-
      /* if there exists user in datastore, get profile
      if not, show the login form */
     if (this.userservice.getUsuario() != '') {
@@ -38,19 +35,18 @@ export class HomeComponent implements OnInit {
    //get Profile via Spotify API
   getProfile(usuario: any) {
     this.loading = true;
-    this.spotify.getProfile(usuario)  
-                .then((data: any) => {
-                  this.profile = data.data;
-                  console.log(this.profile);
+    this.spotify.getProfile(usuario)
+                .subscribe((data: any) => {
+                  this.profile = data;
                   this.userservice.setUsuario(usuario);
                   this.spotify.getPlaylists(usuario)
-                              .then((data: any) => {
-                    this.playlists = data.data;                                 
+                              .subscribe((data: any) => {
+                    this.playlists = data;                                 
                     this.loading = false;
-                  }).catch((error:any)=>{
+                  }, error => {
                     this.loading = false;
                   })
-                }).catch((error: any)=>{
+                }, error => {
                   this.loading = false;
                   Swal.fire({    
                     text: 'User not found',
@@ -59,15 +55,6 @@ export class HomeComponent implements OnInit {
                     allowOutsideClick: false
                   });        
                 });
-  }
-
-  getToken() {
-    this.spotify.token()
-                .subscribe((data: any) => {
-        localStorage.setItem("access_token", data.access_token)
-    }, error => {
-      console.log(error);
-    });
   }
        
   onSubmit(form: FormGroup) {

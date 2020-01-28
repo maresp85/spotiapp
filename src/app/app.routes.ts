@@ -7,4 +7,6 @@ export const ROUTES: Routes = [
     { path: 'home', component: HomeComponent },
     { path: 'playlist/:id', component: PlaylistComponent },
     { path: 'search', component: SearchComponent },    
+    { path: '', component: HomeComponent },
+    { path: '**', component: HomeComponent }
 ]

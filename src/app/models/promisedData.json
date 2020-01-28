@@ -1,0 +1,15 @@
+{
+    "display_name": "maresp85",
+    "external_urls": {
+      "spotify": "https://open.spotify.com/user/maresp85"
+    },
+    "followers": {
+      "href": null,
+      "total": 0
+    },
+    "href": "https://api.spotify.com/v1/users/maresp85",
+    "id": "maresp85",
+    "images": [],
+    "type": "user",
+    "uri": "spotify:user:maresp85"
+  }

@@ -16,7 +16,6 @@ import { NavbarComponent } from './components/shared/navbar/navbar.component';
 import { HomeComponent } from './components/pages/home/home.component';
 import { LoadingComponent } from './components/shared/loading/loading.component';
 import { PlaylistComponent } from './components/pages/playlist/playlist.component';
-import { TrackComponent } from './components/pages/track/track.component';
 import { SearchComponent } from './components/pages/search/search.component';
 
 @NgModule({
@@ -26,7 +25,6 @@ import { SearchComponent } from './components/pages/search/search.component';
     HomeComponent,
     LoadingComponent,
     PlaylistComponent,
-    TrackComponent,
     SearchComponent
   ],
   imports: [

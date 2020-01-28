@@ -2,12 +2,11 @@
     <div class="col-md-3">
 
         <input [(ngModel)]="word"
-                (keyup)="searchArtist()"
-                type="text" 
-                name="word"
-                class="form-control"
-                placeholder="Search by Artist...">
-       
+               (keyup)="searchArtist()"
+               type="text" 
+               name="word"
+               class="form-control white-text"
+               placeholder="Search by Artist...">       
     
     </div>
 </div>
@@ -15,7 +14,7 @@
 <div class="container" *ngIf="search">
     <div class="row">
         <div class="col m12">
-            <table class="striped">
+            <table class="white-text"> 
                 <thead>
                     <tr>
                         <th>Name</th>

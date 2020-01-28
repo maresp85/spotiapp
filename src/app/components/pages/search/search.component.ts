@@ -20,10 +20,10 @@ export class SearchComponent implements OnInit {
    //get Artists By Search Service APi Spotify
   searchArtist() {
     this.spotify.searchArtist(this.word)
-                .then((data: any) =>{
-      this.tracks = data.data.tracks
+                .subscribe((data: any) =>{
+      this.tracks = data.tracks
       this.search = true;
-    }).catch(() => {
+    }, error => {
       console.log("error")
     });
   }

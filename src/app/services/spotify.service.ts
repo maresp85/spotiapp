@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { UserService } from './user.service';
 
 
 @Injectable({
@@ -7,7 +8,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 })
 export class SpotifyService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, userService: UserService) { }
 
    //Get information API Spotify
   getQuery( query:string ){
@@ -19,18 +20,14 @@ export class SpotifyService {
       'Authorization': `Bearer ${access_token}` 
     });
     
-    return new Promise((resolve,reject)=>{    
-      this.http.get(url, { headers }).subscribe((data:any) =>{
-        resolve({data : data}); 
-      }, error => {
-        reject({error: error})
-      });
-      
-    });
+    return this.http.get(url, { headers });
   }
 
    //GetProfile
   getProfile(user_id: any) {
+    this.token().subscribe((data:any)=>{
+      localStorage.setItem('access_token', data.access_token);
+    })
     return this.getQuery(`users/${ user_id }`);
   }
 

@@ -32,11 +32,11 @@ export class PlaylistComponent implements OnInit {
 
     this.loading = true;
     this.spotify.getTracks(this.playlist_id)
-                .then( (data: any) => {  
+                .subscribe( (data: any) => {  
                   console.log(data);  
                   this.playlists = data.data;
                   this.loading = false;               
-    }).catch((error: any)=>{
+    }, error => {
       this.loading = false;
       console.log("Error", error)
     });
