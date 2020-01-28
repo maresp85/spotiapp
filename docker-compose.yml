@@ -1,8 +1,8 @@
-version: '3.7'
+version: '2.2'
 
 services:
 
-  example:
+  spotiapp:
     container_name: spotiapp
     build:
       context: .
